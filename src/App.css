@@ -1,0 +1,31 @@
+.App {
+  text-align: center;
+}
+
+.moistureButton {
+  background-color: white;
+  margin-top: 16px;
+  color: black;
+  font: inherit;
+  border: 1px solid black;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: initial;
+}
+
+.photos-wrapper img, .tiny  {
+  width: 1000px;
+  height: auto;
+  object-fit: cover;
+}
+
+.tiny {
+  filter: blur(20);
+}
