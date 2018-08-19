@@ -13,15 +13,16 @@ class App extends Component {
 
     this.state = {
       togglePhotoVisibility: false,
-      tinyImageLoaded: false,
-      photos: []
+      largeImageLoaded: false,
+      photo: null,
+      isLoading: false
     }
 
     autobind(this);
   }
 
-  getMoisture = () => {
-    const url = `https://api.unsplash.com/search/photos?query=computer`
+  getNewRandomPhoto = () => {
+    const url = 'https://api.unsplash.com/photos/random'
 
     const config = {
       headers: {
@@ -34,8 +35,17 @@ class App extends Component {
     return axios.get(url, config)
       .then((res, rej) => {
         // success
-        console.log('res', res.data.results)
-        this.setState({ photos: res.data.results })
+        console.log('res', res.data)
+        const { photo } = this.state
+
+        // store old photo
+        if (photo) this.state.oldPhoto = photo
+
+        this.setState({
+          photo: res.data,
+          tinyImageLoaded: false,
+          isLoading: true
+        })
       })
       .catch(err => {
         // error
@@ -47,47 +57,41 @@ class App extends Component {
       })
   }
 
-  shouldDisplayPhotos() {
-    const { togglePhotoVisibility, photos } = this.state
-    return togglePhotoVisibility && photos.length
-  }
-
-  handleTinyImageLoaded(event) {
-    this.setState({ tinyImageLoaded: true })
+  handleLargeImageLoaded() {
+    this.setState({
+      largeImageLoaded: true,
+      isLoading: false
+    })
   }
 
   render() {
-    const { photos, togglePhotoVisibility, tinyImageLoaded } = this.state
+    const { photo, largeImageLoaded, isLoading, oldPhoto } = this.state
 
-    const showTinyImageClasses = `${tinyImageLoaded ? 'tiny hide': 'tiny show'}`
-    const showLargeImageClasses = `${tinyImageLoaded ? 'show': 'hide'}`
+    const showTinyImageClasses = `${largeImageLoaded ? 'tiny hide': 'tiny show'}`
+    const showLargeImageClasses = `${largeImageLoaded ? 'show': 'hide'}`
+    const photoWrapperClasses = `${isLoading ? 'photo-wrapper white-overlay' : 'photo-wrapper'}`
 
     return (
       <div className="App">
       
       <button
           className='moistureButton'
-          onClick={() => this.getMoisture()}>
+          onClick={() => this.getNewRandomPhoto()}>
           Fetch photo
         </button>
 
-        <button
-          className='moistureButton'
-          onClick={() => this.setState({ togglePhotoVisibility: !togglePhotoVisibility })}>
-          Show photo
-        </button>
-
-          {this.shouldDisplayPhotos() && (
-            <div class="photos-wrapper">
+          {this.state.photo && (
+            <div className={photoWrapperClasses}>
               <img
-                src={photos[0].urls.thumb}
+                src={photo.urls.thumb}
                 alt="biiig random photo from unsplash"
-                class={showTinyImageClasses}></img>
+                className={showTinyImageClasses}
+                onLoad={this.handleTinyImageLoaded}></img>
               <img
-                src={photos[0].urls.raw}
+                src={isLoading && oldPhoto ? oldPhoto.urls.full : photo.urls.full}
                 alt="smaaaall random photo from unsplash"
-                onLoad={this.handleTinyImageLoaded}
-                class={showLargeImageClasses}></img>
+                onLoad={this.handleLargeImageLoaded}
+                className={showLargeImageClasses}></img>
             </div>
             )
           }
