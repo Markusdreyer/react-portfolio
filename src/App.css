@@ -20,7 +20,7 @@
   display: initial;
 }
 
-.photo-wrapper img, .tiny  {
+img, .tiny  {
   width: 1000px;
   height: auto;
   object-fit: cover;
@@ -28,10 +28,6 @@
 
 .tiny {
   filter: blur(20);
-}
-
-.photo-wrapper {
-  position: relative;
 }
 
 /* white overlay */
