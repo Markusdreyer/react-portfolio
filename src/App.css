@@ -1,49 +1,64 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
-.moistureButton {
-  background-color: white;
-  margin-top: 16px;
-  color: black;
-  font: inherit;
-  border: 1px solid black;
-  padding: 8px;
-  cursor: pointer;
+.fetchButton {
+	background-color: white;
+	margin: 16px auto;
+	color: black;
+	font: inherit;
+	border: 1px solid black;
+	padding: 8px;
+	cursor: pointer;
 }
 
 .hide {
-  display: none;
+	display: none;
 }
 
 .show {
-  display: initial;
+	display: initial;
 }
 
-.photo-wrapper img, .tiny  {
-  width: 1000px;
-  height: auto;
-  object-fit: cover;
+img,
+.tiny {
+	width: 1000px;
+	height: auto;
+	object-fit: cover;
 }
 
 .tiny {
-  filter: blur(20);
-}
-
-.photo-wrapper {
-  position: relative;
+	filter: blur(20);
 }
 
 /* white overlay */
 .white-overlay::after {
-  content: '';
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 
-  background-color: rgba(255,255,255,0.2)
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+.image-container {
+	margin: auto;
+	padding: 16px 16px;
+	background-color: salmon;
+	height: 80%;
+	width: 80%;
+	display: flex;
+	justify-content: space-around;
+}
+
+@media (max-width: 600px) {
+	#randomImage {
+		margin: 50px auto;
+		width: 320px;
+		height: 320px;
+	}
 }
