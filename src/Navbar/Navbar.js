@@ -3,7 +3,7 @@ import Navbar from './Navbar.css'
 
 
 const navbar = (props) => {
-    return (   
+    return (
         <div>
             <ul>
                 <li><a href='#home'>Home</a></li>
