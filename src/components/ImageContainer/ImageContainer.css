@@ -1,0 +1,17 @@
+.image-container {
+	margin: auto;
+	padding: 16px 16px;
+	background-color: salmon;
+	height: 80%;
+	width: 80%;
+	display: flex;
+	justify-content: space-around;
+}
+
+@media (max-width: 600px) {
+	#randomImage {
+		margin: 50px auto;
+		width: 320px;
+		height: 320px;
+	}
+}

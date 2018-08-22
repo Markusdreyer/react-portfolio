@@ -1,0 +1,25 @@
+.navbar-container {
+	display: flex;
+	justify-content: space-around;
+	margin: 10px 360px;
+}
+
+a {
+	background-color: white;
+	padding: 15px;
+	color: black;
+	border: 1px solid black;
+}
+
+a:hover {
+	background-color: black;
+	color: white;
+}
+
+@media (max-width: 600px) {
+	.navbar-container  {
+		margin-left: auto;
+		margin-right: auto;
+		justify-content: center;
+	}
+}
