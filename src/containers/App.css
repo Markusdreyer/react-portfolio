@@ -1,0 +1,22 @@
+.App {
+	text-align: center;
+}
+
+.fetchButton {
+	background-color: white;
+	margin: 16px auto;
+	color: black;
+	font: inherit;
+	border: 1px solid black;
+	padding: 8px;
+	cursor: pointer;
+}
+
+.fetchButton:hover {
+	background-color: black;
+	color: white;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
